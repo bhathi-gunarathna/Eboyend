@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Movie Library - Discover and collect your favourite movies and TV shows">
+    <title>Ebeoynds</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Logo.png" >
+</head>
+<body>
+
+
+    <header class="header" id="header" role="banner">
+        <div class="container header__inner">
+            <!-- Logo -->
+            <a href="#" class="header__logo" aria-label="Logoipsum - Home">
+                <img src="images/Logo.png" alt="Logoipsum" width="140" height="28">
+            </a>
+
+           
+            <nav class="header__nav" id="mainNav" role="navigation" aria-label="Main navigation">
+                <ul class="header__nav-list">
+                    <li><a href="#hero" class="header__nav-link active">HOME</a></li>
+                    <li><a href="#intro" class="header__nav-link">OUR SCREENS</a></li>
+                    <li><a href="#favorites" class="header__nav-link">SCHEDULE</a></li>
+                    <li><a href="#favorites" class="header__nav-link">MOVIE LIBRARY</a></li>
+                    <li><a href="#contact" class="header__nav-link">LOCATION &amp; CONTACT</a></li>
+                </ul>
+            </nav>
+
+           
+            <button class="header__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+                <span class="header__hamburger-line"></span>
+                <span class="header__hamburger-line"></span>
+                <span class="header__hamburger-line"></span>
+            </button>
+        </div>
+
+  
+        <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+            <div class="mobile-nav__overlay" id="mobileNavOverlay"></div>
+            <div class="mobile-nav__content">
+                <button class="mobile-nav__close" id="mobileNavClose" aria-label="Close menu">
+                    &times;
+                </button>
+                <ul class="mobile-nav__list">
+                    <li><a href="#hero" class="mobile-nav__link">HOME</a></li>
+                    <li><a href="#intro" class="mobile-nav__link">OUR SCREENS</a></li>
+                    <li><a href="#favorites" class="mobile-nav__link">SCHEDULE</a></li>
+                    <li><a href="#favorites" class="mobile-nav__link">MOVIE LIBRARY</a></li>
+                    <li><a href="#contact" class="mobile-nav__link">LOCATION &amp; CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="hero" id="hero" aria-label="Main visual">
+        <div class="hero__slideshow">
+            <div class="hero__slide active" style="background-image: url('images/banner.png');">
+            </div>
+            <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=1600&q=80');">
+            </div>
+            <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&q=80');">
+            </div>
+        </div>
+        <div class="hero__gradient"></div>
+        <!-- Slideshow Indicators -->
+        <div class="hero__indicators">
+            <button class="hero__indicator active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="hero__indicator" data-slide="1" aria-label="Slide 2"></button>
+            <button class="hero__indicator" data-slide="2" aria-label="Slide 3"></button>
+        </div>
+    </section>
+
+   
+    <section class="intro" id="intro" aria-label="Site introduction">
+        <div class="container" >
+            <div class="intro__content">
+                <h1 class="intro__title gsap-fade-up">MOVIE LIBRARY</h1>
+                <p class="intro__text gsap-fade-up">
+                    Lorem ipsum dolor sit amet, consectetur sadipscing elitr,
+                    sed diam nonumy eirmod tempor invidunt ut labore et
+                    dolore magna aliquyam erat, sed diam voluptua.
+                </p>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="favorites" id="favorites" aria-label="Collect your favourites">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="favorites__header gsap-fade-up">
+                <h2 class="favorites__title">Collect your favourites</h2>
+                <div class="favorites__search-wrapper">
+                    <div class="search-box">
+                        <svg class="search-box__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input
+                            type="search"
+                            class="search-box__input"
+                            id="movieSearch"
+                            placeholder="Search title and add to grid"
+                            aria-label="Search for movies or TV shows"
+                            autocomplete="off"
+                        >
+                        <div class="search-box__spinner" id="searchSpinner" aria-hidden="true">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" role="listbox" aria-label="Search results">
+                        
+                    </div>
+                </div>
+                <div class="line"></div>
+            </div>
+
+           
+            <div class="favorites__grid" id="favoritesGrid">
+
+                <article class="movie-card" data-static="true" data-id="batman-returns">
+                    <div class="movie-card__image-wrapper">
+                        <img
+                            src="images/Grid/Grid 1.png"
+                            alt="Batman Returns movie poster"
+                            class="movie-card__image"
+                            loading="lazy"
+                        >
+                        <button class="movie-card__remove" aria-label="Remove Batman Returns from favourites" title="Remove">
+                            X
+                        </button>
+                    </div>
+                    <div class="movie-card__info">
+                        <h3 class="movie-card__title">Batman Returns</h3>
+                        <p class="movie-card__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae porro distinctio quas, omnis, saepe voluptates asperiores suscipit quibusdam eaque temporibus libero? Illum dolore alias cupiditate assumenda officia molestias rerum incidunt!</p>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-static="true" data-id="wild-wild-west">
+                    <div class="movie-card__image-wrapper">
+                        <img
+                            src="images/Grid/Grid 2.png"
+                            alt="Wild Wild West movie poster"
+                            class="movie-card__image"
+                            loading="lazy"
+                        >
+                        <button class="movie-card__remove" aria-label="Remove Wild Wild West from favourites" title="Remove">
+                            X
+                        </button>
+                    </div>
+                    <div class="movie-card__info">
+                        <h3 class="movie-card__title">Wild Wild West</h3>
+                        <p class="movie-card__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis in dicta exercitationem placeat ab neque soluta? Praesentium impedit adipisci quis tempore consectetur eaque neque doloribus error facilis. Ut, ratione amet.</p>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-static="true" data-id="amazing-spiderman">
+                    <div class="movie-card__image-wrapper">
+                        <img
+                            src="images/Grid/Grid 3.png"
+                            alt="The Amazing Spiderman movie poster"
+                            class="movie-card__image"
+                            loading="lazy"
+                        >
+                        <button class="movie-card__remove" aria-label="Remove The Amazing Spiderman from favourites" title="Remove">
+                            X
+                        </button>
+                    </div>
+                    <div class="movie-card__info">
+                        <h3 class="movie-card__title">The Amazing Spiderman</h3>
+                        <p class="movie-card__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis in dicta exercitationem placeat ab neque soluta? Praesentium impedit adipisci quis tempore consectetur eaque neque doloribus error facilis. Ut, ratione amet.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="contact" id="contact" aria-label="Contact us">
+        <div class="container">
+            <div class="contact__header gsap-fade-up">
+                <h2 class="contact__title">How to reach us</h2>
+                <p class="contact__subtitle">Lorem ipsum dolor sit amet, consectetur.</p>
+            </div>
+
+            <div class="contact__content">
+                <!-- Contact Form -->
+                <div class="contact__form-wrapper gsap-fade-right">
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <div class="contact-form__row">
+                            <div class="contact-form__group">
+                                <label for="firstName" class="contact-form__label">First Name <span class="required">*</span></label>
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    class="contact-form__input"
+                                    required
+                                    autocomplete="given-name"
+                                    aria-required="true"
+                                >
+                                <span class="contact-form__error" id="firstNameError" role="alert"></span>
+                            </div>
+                            <div class="contact-form__group">
+                                <label for="lastName" class="contact-form__label">Last Name <span class="required">*</span></label>
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                    class="contact-form__input"
+                                    required
+                                    autocomplete="family-name"
+                                    aria-required="true"
+                                >
+                                <span class="contact-form__error" id="lastNameError" role="alert"></span>
+                            </div>
+                        </div>
+
+                        <div class="contact-form__group">
+                            <label for="email" class="contact-form__label">Email <span class="required">*</span></label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="contact-form__input"
+                                required
+                                autocomplete="email"
+                                aria-required="true"
+                            >
+                            <span class="contact-form__error" id="emailError" role="alert"></span>
+                        </div>
+
+                        <div class="contact-form__group">
+                            <label for="phone" class="contact-form__label">Telephone</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                class="contact-form__input"
+                                autocomplete="tel"
+                            >
+                            <span class="contact-form__error" id="phoneError" role="alert"></span>
+                        </div>
+
+                        <div class="contact-form__group">
+                            <label for="comments" class="contact-form__label">Message <span class="required">*</span></label>
+                            <textarea
+                                id="comments"
+                                name="comments"
+                                class="contact-form__input contact-form__textarea"
+                                rows="5"
+                                required
+                                aria-required="true"
+                            ></textarea>
+                            <span class="contact-form__error" id="commentsError" role="alert"></span>
+                        </div>
+
+                        <p class="contact-form__required-note">*Required fields</p>
+
+                        <div class="contact-form__group contact-form__checkbox-group">
+                            <label class="contact-form__checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    id="agreeTerms"
+                                    name="agreeTerms"
+                                    class="contact-form__checkbox"
+                                    required
+                                    aria-required="true"
+                                >
+                                <span class="contact-form__checkbox-custom"></span>
+                                I agree to the <a href="#" class="contact-form__link">Terms &amp; Conditions</a>
+                            </label>
+                            <span class="contact-form__error" id="agreeTermsError" role="alert"></span>
+                        </div>
+
+                        <button type="submit" class="contact-form__submit" id="submitBtn">
+                            <span class="contact-form__submit-text">SUBMIT</span>
+                            <span class="contact-form__submit-spinner" aria-hidden="true">
+                                <div class="spinner spinner--small"></div>
+                            </span>
+                        </button>
+
+                       
+                        <div class="contact-form__message" id="formMessage" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+
+                <!-- Google Maps -->
+                <div class="contact__map-wrapper gsap-fade-left">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.3812075643614!2d79.9404323!3d6.844821199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25069caa2f53b%3A0xe7eae3a8b1f1214d!2seBEYONDS%20eBusiness%20%26%20Digital%20Solutions!5e0!3m2!1sen!2slk!4v1790409987861!5m2!1sen!2slk" 
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="eBEYONDS Location on Google Maps"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <!-- Upper Footer -->
+            <div class="footer__upper">
+                <div class="footer__info">
+                    <h3 class="footer__company">IT Group</h3>
+                    <address class="footer__address">
+                        C. Salvador de Madariaga, 1<br>
+                        28027 Madrid<br>
+                        Spain
+                    </address>
+                </div>
+                <div class="footer__social">
+                    <span class="footer__social-label">Follow us on</span>
+                    <div class="footer__social-icons">
+                        <!-- Twitter/X -->
+                        <a href="#" class="footer__social-link" aria-label="Follow us on Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M23.953 4.57c-.885.39-1.83.65-2.825.775
+                                1.014-.608 1.794-1.57 2.163-2.723
+                                -.95.564-2.005.974-3.127 1.195
+                                -.896-.957-2.178-1.555-3.594-1.555
+                                -2.717 0-4.923 2.206-4.923 4.923
+                                0 .386.045.762.127 1.124
+                                -4.09-.205-7.719-2.165-10.148-5.144
+                                -.424.722-.666 1.561-.666 2.475
+                                0 1.708.87 3.213 2.188 4.096
+                                -.807-.026-1.566-.247-2.229-.616
+                                v.061c0 2.385 1.693 4.374 3.946 4.827
+                                -.413.111-.849.171-1.296.171
+                                -.317 0-.626-.03-.927-.086
+                                .627 1.956 2.444 3.379 4.6 3.419
+                                -1.68 1.317-3.809 2.101-6.102 2.101-.396 0-.79-.023-1.17-.068 2.179 1.397 4.768 2.212 7.548 2.212 9.057 0 14.01-7.507 14.01-14.01 0-.213-.005-.425-.014-.636 .961-.695 1.8-1.562 2.46-2.548z"/>
+                            </svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="#" class="footer__social-link" aria-label="Follow us on YouTube">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="footer__lower">
+                <p class="footer__copyright">Copyright &copy; 2022 IT Hotel Is. All rights reserved.</p>
+                <p class="footer__credits">
+                    Photos by Felix Mooneeram &amp; <a href="#">Serge Kutuzov</a> on <a href="#" >Unsplash</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="#intro" class="skip-link">Skip to main content</a>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>
